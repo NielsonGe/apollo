@@ -7,20 +7,22 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "RolePermission")
-@SQLDelete(sql = "Update RolePermission set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "role_permission")
+@SQLDelete(sql = "UPDATE role_permission SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "role_permission_id_seq", allocationSize = 1)
 public class RolePermission extends BaseEntity {
-  @Column(name = "RoleId", nullable = false)
+  @Column(name = "role_id", nullable = false)
   private long roleId;
 
-  @Column(name = "PermissionId", nullable = false)
+  @Column(name = "permission_id", nullable = false)
   private long permissionId;
 
   public long getRoleId() {

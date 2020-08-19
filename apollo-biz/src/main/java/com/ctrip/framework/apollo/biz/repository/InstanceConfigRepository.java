@@ -28,18 +28,18 @@ public interface InstanceConfigRepository extends PagingAndSortingRepository<Ins
       String appId, String clusterName, String namespaceName, Date validDate, Set<String> releaseKey);
 
   @Modifying
-  @Query("delete from InstanceConfig  where ConfigAppId=?1 and ConfigClusterName=?2 and ConfigNamespaceName = ?3")
+  @Query("delete from InstanceConfig  where config_app_id=?1 and config_cluster_name=?2 and config_namespace_name = ?3")
   int batchDelete(String appId, String clusterName, String namespaceName);
 
   @Query(
-      value = "select b.Id from `InstanceConfig` a inner join `Instance` b on b.Id =" +
-          " a.`InstanceId` where a.`ConfigAppId` = :configAppId and a.`ConfigClusterName` = " +
-          ":clusterName and a.`ConfigNamespaceName` = :namespaceName and a.`DataChange_LastTime` " +
-          "> :validDate and b.`AppId` = :instanceAppId",
-      countQuery = "select count(1) from `InstanceConfig` a inner join `Instance` b on b.id =" +
-          " a.`InstanceId` where a.`ConfigAppId` = :configAppId and a.`ConfigClusterName` = " +
-          ":clusterName and a.`ConfigNamespaceName` = :namespaceName and a.`DataChange_LastTime` " +
-          "> :validDate and b.`AppId` = :instanceAppId",
+      value = "select b.Id from instance_config a inner join instance b on b.id =" +
+          " a.instance_id where a.config_app_id = :configAppId and a.config_cluster_name = " +
+          ":clusterName and a.config_namespace_name = :namespaceName and a.last_modified_time " +
+          "> :validDate and b.app_id = :instanceAppId",
+      countQuery = "select count(1) from instance_config a inner join instance b on b.id =" +
+              " a.instance_id where a.config_app_id = :configAppId and a.config_cluster_name = " +
+              ":clusterName and a.config_namespace_name = :namespaceName and a.last_modified_time " +
+              "> :validDate and b.app_id = :instanceAppId",
       nativeQuery = true)
   Page<Object> findInstanceIdsByNamespaceAndInstanceAppId(
       @Param("instanceAppId") String instanceAppId, @Param("configAppId") String configAppId,

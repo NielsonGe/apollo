@@ -38,7 +38,7 @@ public class DefaultUserService implements UserService {
     UserInfo defaultUser = new UserInfo();
     defaultUser.setUserId("apollo");
     defaultUser.setName("apollo");
-    defaultUser.setEmail("apollo@acme.com");
+    defaultUser.setEmail("apollo@dcsp.com");
 
     return defaultUser;
   }

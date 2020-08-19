@@ -6,22 +6,24 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "AccessKey")
-@SQLDelete(sql = "Update AccessKey set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "access_key")
+@SQLDelete(sql = "UPDATE access_key set deleted = 1 where id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "access_key_id_seq", allocationSize = 1)
 public class AccessKey extends BaseEntity {
 
-  @Column(name = "appId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "Secret", nullable = false)
+  @Column(name = "secret", nullable = false)
   private String secret;
 
-  @Column(name = "isEnabled", columnDefinition = "Bit default '0'")
-  private boolean enabled;
+  @Column(name = "enabled", nullable = false)
+  protected boolean enabled = false;
 
   public String getAppId() {
     return appId;

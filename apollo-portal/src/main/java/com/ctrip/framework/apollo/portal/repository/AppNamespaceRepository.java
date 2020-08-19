@@ -19,10 +19,10 @@ public interface AppNamespaceRepository extends PagingAndSortingRepository<AppNa
   List<AppNamespace> findByAppId(String appId);
 
   @Modifying
-  @Query("UPDATE AppNamespace SET IsDeleted=1,DataChange_LastModifiedBy=?2 WHERE AppId=?1")
+  @Query("UPDATE AppNamespace SET deleted=true, last_modified_by=?2 WHERE app_id=?1")
   int batchDeleteByAppId(String appId, String operator);
 
   @Modifying
-  @Query("UPDATE AppNamespace SET IsDeleted=1,DataChange_LastModifiedBy = ?3 WHERE AppId=?1 and Name = ?2")
+  @Query("UPDATE AppNamespace SET deleted=true, last_modified_by=?3 WHERE app_id=?1 and name=?2")
   int delete(String appId, String namespaceName, String operator);
 }

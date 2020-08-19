@@ -4,48 +4,42 @@ import com.google.common.base.MoreObjects;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "InstanceConfig")
+@Table(name = "instance_config")
+@SequenceGenerator(name = "sequence", sequenceName = "instance_config_id_seq", allocationSize = 1)
 public class InstanceConfig {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Id")
+  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
   private long id;
 
-  @Column(name = "InstanceId")
+  @Column(name = "instance_id")
   private long instanceId;
 
-  @Column(name = "ConfigAppId", nullable = false)
+  @Column(name = "config_app_id", nullable = false)
   private String configAppId;
 
-  @Column(name = "ConfigClusterName", nullable = false)
+  @Column(name = "config_cluster_name", nullable = false)
   private String configClusterName;
 
-  @Column(name = "ConfigNamespaceName", nullable = false)
+  @Column(name = "config_namespace_name", nullable = false)
   private String configNamespaceName;
 
-  @Column(name = "ReleaseKey", nullable = false)
+  @Column(name = "release_key", nullable = false)
   private String releaseKey;
 
-  @Column(name = "ReleaseDeliveryTime", nullable = false)
+  @Column(name = "release_delivery_time", nullable = false)
   private Date releaseDeliveryTime;
 
-  @Column(name = "DataChange_CreatedTime", nullable = false)
+  @Column(name = "created_time", nullable = false)
   private Date dataChangeCreatedTime;
 
-  @Column(name = "DataChange_LastTime")
+  @Column(name = "last_modified_time")
   private Date dataChangeLastModifiedTime;
 
   @PrePersist
