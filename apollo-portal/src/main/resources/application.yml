@@ -2,12 +2,18 @@ spring:
   application:
     name: apollo-portal
   profiles:
-    active: ${apollo_profile}
+    active: github,auth
   jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
     properties:
       hibernate:
         query:
           plan_cache_max_size: 192 # limit query plan cache max size
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
 
 server:
   port: 8070
@@ -23,5 +29,7 @@ management:
   health:
     status:
       order: DOWN, OUT_OF_SERVICE, UNKNOWN, UP
+
+
 
 
