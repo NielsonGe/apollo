@@ -1,2 +1,2 @@
-INSERT INTO `permission` (`Id`, `PermissionType`, `TargetId`) VALUES (990, 'somePermissionType', 'someTargetId');
-INSERT INTO `permission` (`Id`, `PermissionType`, `TargetId`) VALUES (991, 'anotherPermissionType', 'anotherTargetId');
+INSERT INTO permission (id, permission_type, target_id) VALUES (990, 'somePermissionType', 'someTargetId');
+INSERT INTO permission (id, permission_type, target_id) VALUES (991, 'anotherPermissionType', 'anotherTargetId');

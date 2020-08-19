@@ -1,25 +1,25 @@
-INSERT INTO `app` ( `AppId`, `Name`, `OrgId`, `OrgName`, `OwnerName`, `OwnerEmail`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_LastModifiedBy`)VALUES('testApp', 'test', 'default', 'default', 'default', 'default', 0, 'default', 'default');
+INSERT INTO app ( app_id, name, org_id, org_name, owner_name, owner_email, deleted, created_by, last_modified_by)VALUES('testApp', 'test', 'default', 'default', 'default', 'default', false, 'default', 'default');
 
-INSERT INTO `cluster` (`ID`, `Name`, `AppId`, `ParentClusterId`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_LastModifiedBy`) VALUES (1, 'default', 'testApp', 0, 0, 'default', 'default');
-INSERT INTO `cluster` (`Name`, `AppId`, `ParentClusterId`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_LastModifiedBy`)VALUES('child-cluster', 'testApp', 1, 0, 'default', 'default');
+INSERT INTO cluster (id, name, app_id, parent_cluster_id, deleted, created_by, last_modified_by) VALUES (1, 'default', 'testApp', 0, false, 'default', 'default');
+INSERT INTO cluster (name, app_id, parent_cluster_id, deleted, created_by, last_modified_by)VALUES('child-cluster', 'testApp', 1, false, 'default', 'default');
 
-INSERT INTO `appnamespace` (`Name`, `AppId`, `Format`, `IsPublic`) VALUES ( 'application', 'testApp', 'properties', 0);
+INSERT INTO app_namespace (name, app_id, format, shared) VALUES ( 'application', 'testApp', 'properties', false);
 
-INSERT INTO `namespace` (`ID`, `AppId`, `ClusterName`, `NamespaceName`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_LastModifiedBy`)VALUES(1,'testApp', 'default', 'application', 0, 'apollo', 'apollo');
-INSERT INTO `namespace` (`AppId`, `ClusterName`, `NamespaceName`, `IsDeleted`, `DataChange_CreatedBy`, `DataChange_LastModifiedBy`)VALUES('testApp', 'child-cluster', 'application', 0, 'apollo', 'apollo');
+INSERT INTO namespace (id, app_id, cluster_name, namespace_name, deleted, created_by, last_modified_by)VALUES(1,'testApp', 'default', 'application', false, 'apollo', 'apollo');
+INSERT INTO namespace (app_id, cluster_name, namespace_name, deleted, created_by, last_modified_by)VALUES('testApp', 'child-cluster', 'application', false, 'apollo', 'apollo');
 
-INSERT INTO `commit` (`ChangeSets`, `AppId`, `ClusterName`, `NamespaceName`)VALUES('{}', 'testApp', 'default', 'application');
+INSERT INTO commit (change_sets, app_id, cluster_name, namespace_name)VALUES('{}', 'testApp', 'default', 'application');
 
-INSERT INTO `item` (`NamespaceId`, `Key`, `Value`, `Comment`, `LineNum`)VALUES(1, 'k1', 'v1', '', 1);
+INSERT INTO item (namespace_id, key, value, comment, line_num)VALUES(1, 'k1', 'v1', '', 1);
 
-INSERT INTO `namespacelock` (`NamespaceId`)VALUES(1);
+INSERT INTO namespace_lock (namespace_id)VALUES(1);
 
-INSERT INTO `release` (`AppId`, `ClusterName`, `NamespaceName`, `Configurations`, `IsAbandoned`)VALUES('branch-test', 'default', 'application', '{}', 0);
-INSERT INTO `release` (`AppId`, `ClusterName`, `NamespaceName`, `Configurations`, `IsAbandoned`)VALUES('branch-test', 'child-cluster', 'application', '{}', 0);
+INSERT INTO release (app_id, cluster_name, namespace_name, configurations, abandoned)VALUES('branch-test', 'default', 'application', '{}', false);
+INSERT INTO release (app_id, cluster_name, namespace_name, configurations, abandoned)VALUES('branch-test', 'child-cluster', 'application', '{}', false);
 
-INSERT INTO `releasehistory` (`AppId`, `ClusterName`, `NamespaceName`, `BranchName`, `ReleaseId`, `PreviousReleaseId`, `Operation`, `OperationContext`)VALUES('branch-test', 'default', 'application', 'default', 0, 0, 7, '{}');
+INSERT INTO release_history (app_id, cluster_name, namespace_name, branch_name, release_id, previous_release_id, operation, operation_context)VALUES('branch-test', 'default', 'application', 'default', 0, 0, 7, '{}');
 
-INSERT INTO `instanceconfig` (`ID`, `InstanceId`, `ConfigAppId`, `ConfigClusterName`, `ConfigNamespaceName`, `ReleaseKey`, `ReleaseDeliveryTime`, `DataChange_CreatedTime`, `DataChange_LastTime`)
+INSERT INTO instance_config (id, instance_id, config_app_id, config_cluster_name, config_namespace_name, release_key, release_delivery_time, created_time, last_modified_time)
 VALUES
 	(1, 90, 'testApp', 'default', 'application', '20160829134524-dee271ddf9fced58', '2016-08-29 13:45:24', '2016-08-30 17:03:32', '2016-10-19 11:13:47');
 

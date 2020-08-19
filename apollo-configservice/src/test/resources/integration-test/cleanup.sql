@@ -1,9 +1,9 @@
-DELETE FROM Release;
-DELETE FROM Namespace;
-DELETE FROM AppNamespace;
-DELETE FROM Cluster;
-DELETE FROM App;
-DELETE FROM ReleaseMessage;
-DELETE FROM GrayReleaseRule;
+DELETE FROM release;
+DELETE FROM namespace;
+DELETE FROM app_namespace;
+DELETE FROM cluster;
+DELETE FROM app;
+DELETE FROM release_message;
+DELETE FROM gray_release_rule;
 
 

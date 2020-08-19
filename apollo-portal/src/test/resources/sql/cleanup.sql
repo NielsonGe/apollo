@@ -1,8 +1,8 @@
-delete from Permission;
-delete from Role;
-delete from RolePermission;
-delete from UserRole;
-delete from AppNamespace;
-DELETE FROM Favorite;
-DELETE FROM ServerConfig;
-DELETE FROM App;
+delete from permission;
+delete from role;
+delete from role_permission;
+delete from user_role;
+delete from app_namespace;
+DELETE FROM favorite;
+DELETE FROM server_config;
+DELETE FROM app;

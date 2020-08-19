@@ -1,2 +1,2 @@
-INSERT INTO `role` (`Id`, `RoleName`) VALUES (990, 'someRoleName');
-INSERT INTO `role` (`Id`, `RoleName`) VALUES (991, 'anotherRoleName');
+INSERT INTO role (id, role_name) VALUES (990, 'someRoleName');
+INSERT INTO role (id, role_name) VALUES (991, 'anotherRoleName');
